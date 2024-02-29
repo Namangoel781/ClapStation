@@ -1,0 +1,537 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}
+Home | Clap Station
+{% endblock title %}
+
+{% block css-code %}
+
+.actions {
+display: flex;
+gap: 20px;
+}
+
+.action-item {
+display: flex;
+align-items: center;
+}
+
+{% comment %} Events {% endcomment %}
+.form-section {
+display: flex;
+flex-direction: column;
+align-items: center;
+}
+
+.form-section label {
+margin-bottom: 5px;
+}
+
+.form-section input {
+width: 100%;
+padding: 8px;
+margin-bottom: 10px;
+}
+{% comment %} End {% endcomment %}
+
+.fa-star:hover {
+color: black;
+}
+
+.Event_p {
+
+color: #bf9100;
+font-weight: 900;
+font-size: xx-large;
+
+}
+
+{% endblock css-code %}
+
+{% block webpage %}
+
+<!-- SECOND -->
+<div class="webpage page-new-home">
+	<div class="container-fluid">
+
+		<div class="home-page-wrap">
+			<div class="row">
+				<div class="col-lg-2 col-md-6 col-sm-12 col-xs-12 home-left-col">
+					<div class="home-left-area main-home-left-area">
+						<div class="home-fltr-btn">
+							<div class="dd-lft">
+								<div class="dropdown">
+									<button class="btn btn-secondary dropdown-toggle" type="button"
+										id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true"
+										aria-expanded="false">
+										<span><i class="fa fa-filter" aria-hidden="true"></i></span> Filter the View
+									</button>
+									<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+										<a class="dropdown-item" href="#"><i class="fa fa-filter"
+												aria-hidden="true"></i>Friends</a>
+										<a class="dropdown-item" href="#"><i class="fa fa-filter"
+												aria-hidden="true"></i>Artists</a>
+										<a class="dropdown-item" href="#"><i class="fa fa-filter"
+												aria-hidden="true"></i>Bands</a>
+										<a class="dropdown-item" href="#"><i class="fa fa-filter"
+												aria-hidden="true"></i>Academies</a>
+										<a class="dropdown-item" href="#"><i class="fa fa-filter"
+												aria-hidden="true"></i>Jamming Stations</a>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="left-image-in">
+							
+							{% if user.first_name %}
+							<img src="/media/{{user.profile}}">
+							<p>{{ user.first_name}} <br>
+								{{user.designation }}</p>
+							{% else %}
+							<img src="/media/profile/image/home-1.png">
+							<p>Your Name!</p>
+							{% endif %}
+						</div>
+						<div class="home-left-area-btn">
+							<button class="cmmn-btn slowHover" type="button">Book Jamming Space</button>
+							<button class="cmmn-btn slowHover" type="button">Book a Tutor</button>
+							<button class="cmmn-btn slowHover" type="button">Search Students</button>
+						</div>
+					</div>
+				</div>
+				<div class="col-lg-7 col-md-3 col-sm-12 col-xs-12 home-center-col">
+					<div class="home-middle-area main-home-middle-area">
+						{% if error_message %}
+						<div class="alert alert-danger alert-dismissible  show d-flex justify-content-between align-items-center"
+							role="alert">
+							<span>{{ error_message }}</span>
+							<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+								<span aria-hidden="true">&times;</span>
+							</button>
+						</div>
+						{% endif %}
+						{% if user.is_authenticated %}
+						<div class="middle-text-post">
+							<ul>
+								<li>
+									<button type="submit" class="upload_btn" onclick="openUrl()">
+										<img src="{% static 'images/video.png' %}">
+										<span onclick="openUrl()">Live Videos</span>
+									</button>
+								</li>
+								<li>
+									<button type="submit" class="upload_btn"> <img
+											src="{% static 'images/photo.png' %}">
+										<span onclick="openPop_up()">Photos/Videos</span>
+									</button>
+								</li>
+								<li>
+									<button type="submit" class="upload_btn"> <img
+											src="{% static 'images/calendar.png' %}">
+										<span onclick="openEvent()">Events</span>
+									</button>
+								</li>
+							</ul>
+						</div>
+						{% endif %}
+
+						<!-- Live Video Popup -->
+
+						<form action="{% url 'add-live-video' %}" method="post">
+							{% csrf_token %}
+							<div class="">
+
+								<div class="pop_up container1" id="pop_url">
+									<div class="middle-txt-area">
+										<a href="#" class="btn-close" onclick="closeUrl()">&times;</a>
+										<div class="logo">
+											<a href="#"><img src=" {% static 'images/logo.png' %}"></a>
+										</div>
+										<textarea id="post-url" name="post-url" rows="4" cols="50"
+											placeholder="Add your url here."></textarea>
+
+										<textarea id="post-description" name="post-description" rows="4" cols="50"
+											placeholder="Add your description here."></textarea>
+
+										<button type="submit" onclick="closeUrl()"><i class="fa fa-pencil-square-o"
+												aria-hidden="true"></i>Add URL
+										</button>
+									</div>
+								</div>
+
+							</div>
+						</form>
+
+						{% comment %} Post Caption,Images and Videos {% endcomment %}
+
+						<form action="/" method="post" enctype="multipart/form-data">
+							{% csrf_token %}
+							<div class="">
+
+								<div class="pop_up container1" id="pop_up">
+									<div class="middle-txt-area">
+										<a href="#" class="btn-close" onclick="closePop_up()">&times;</a>
+										<div class="logo">
+											<a href="#"><img src=" {% static 'images/logo.png' %}"></a>
+										</div>
+										<textarea id="" name="post-content" rows="4" cols="50"
+											placeholder="Share your content....."></textarea>
+
+										<label class="home-img-upload-section">
+											<input class="home-img-upload" type="file" id="img" name="post-image">
+											<img src="{% static 'images/photo.png' %}">Upload_Photos/Videos
+										</label>
+
+										<p> Your details has been successfully submitted. Thanks!</p>
+
+										<button type="submit" onclick="closePop_up()"><i class="fa fa-pencil-square-o"
+												aria-hidden="true"></i>Post
+										</button>
+									</div>
+								</div>
+
+							</div>
+						</form>
+						{% comment %} End {% endcomment %}
+
+						{% comment %} Events {% endcomment %}
+
+						<form action="{% url 'add_event' %}" method="post" id="addEventForm"
+							enctype="multipart/form-data">
+							{% csrf_token %}
+							<div class="pop_up container1" id="pop_event">
+								<div class="middle-txt-area">
+									<a href="#" class="btn-close" onclick="closeEvent()">&times;</a>
+									<div class="logo">
+										<a href="#"><img src="{% static 'images/logo.png' %}"></a>
+									</div>
+
+									<div class="form-section">
+										<label for="eventDate">Date:</label>
+										<input type="datetime-local" name="eventDate" id="eventDate" required>
+
+										<label for="artistName">Artist Name:</label>
+										<input type="text" name="artistName" id="artistName" required>
+
+										<label for="eventName">Event Name:</label>
+										<input type="text" name="eventName" id="eventName" required>
+
+										<label for="eventPhoto">Event Photo:</label>
+										<input type="file" name="eventPhoto" id="eventPhoto" accept="image/*">
+
+										<button type="submit" onclick="submitEvent()">Add Event</button>
+									</div>
+								</div>
+							</div>
+						</form>
+
+						{% comment %} End {% endcomment %}
+
+						{% for obj in liveVideos %}
+						<div class="white-heading">
+							<div class="row row-cols-2">
+								<div class="col"><h3>{{ obj.author.first_name }}</h3></div>
+								<div class="col"><i class="fas fa-clock" aria-hidden="true"></i>{{obj.created_at}}</div>
+								
+							  </div>
+						</div>
+						<div class="middle-txt-area live-url-box">
+							<p><strong>URL: </strong><a href="{{ obj.url }}" target="_blank">{{ obj.url }}</a></p>
+							<p><strong>Description: </strong>{{ obj.description }}</p>
+							{% if user == obj.author %}
+							<a href="/livevideodelete/{{ obj.id }}">
+								<i class="fa fa-trash-o" aria-hidden="true"></i> Delete
+							</a>
+							{% endif %}
+						</div>
+						{% endfor %}
+
+
+						{% for obj in content %}
+						<div class="home-posts-wrap">
+							<div class="white-heading">
+								<div class="row row-cols-2">
+									<div class="col"><h3>{{ obj.author.first_name }}</h3></div>
+									<div class="col"><i class="fas fa-clock" aria-hidden="true"></i>{{obj.created_at}}</div>
+									
+								  </div>
+							</div>
+							<div class="posts-images">
+								<img src="/media/{{ obj.img }}">
+								<p> {{ obj.about }} </p>
+								<div class="actions">
+									<div class="action-item">
+										<a href="{% url 'toggle_like_dislike' obj.id %}">
+											{% if request.user in obj.likes.all %}
+											<i class="fa fa-heart" aria-hidden="true"></i>
+											{% else %}
+											<i class="fa fa-heart" aria-hidden="true"></i>
+											{% endif %}
+										</a>
+										{{ obj.likes.count }} Likes
+									</div>
+
+									<form action="" method="post" id="rateForm{{ obj.id }}" class="action-item">
+										{% csrf_token %}
+										<a href="#" onclick="openRate(event, {{ obj.id }})">
+											<i class="fa fa-star" aria-hidden="true"></i> {{ obj.rate }} Rate
+										</a>
+										<!-- Pop-up for rating -->
+										<div class="pop_up container1" id="pop_rate_{{ obj.id }}"
+											data-post-id="{{ obj.id }}">
+											<!-- Star rating section -->
+											<div class="middle-txt-area">
+												<a href="#" class="btn-close"
+													onclick="closeRate({{ obj.id }})">&times;</a>
+												<div class="star-rating">
+													{% for i in "12345" %}
+													<i class="fa fa-star" aria-hidden="true"
+														onclick="submitRating({{ obj.id }}, {{ i }})"></i>
+													{% endfor %}
+												</div>
+											</div>
+										</div>
+									</form>
+
+									<form action="{% url 'add_comment' obj.id %}" method="post"
+										id="commentForm{{ obj.id }}" class="action-item">
+										{% csrf_token %}
+										<a href="#" onclick="openComment(event, {{ obj.id }})">
+											<i class="fa fa-commenting-o" aria-hidden="true"></i> Comment
+										</a>
+										<!-- Pop-up for comments -->
+										<div class="pop_up container1" id="pop_comment_{{ obj.id }}">
+											<div class="middle-txt-area">
+												<a href="#" class="btn-close"
+													onclick="closeComment({{ obj.id }})">&times;</a>
+												<textarea id="" name="post-comment" rows="4" cols="50"
+													placeholder="Add comment....."></textarea>
+												<button type="submit"><i class="fa fa-pencil-square-o"
+														aria-hidden="true"></i> Save</button>
+											</div>
+										</div>
+									</form>
+
+									<div class="action-item">
+										<a href="#"><i class="fa fa-share-square-o" aria-hidden="true"></i> Reshare</a>
+									</div>
+
+									<form action="/" method="POST" class="ui form action-item">
+										{% csrf_token %}
+										{% if user == obj.author %}
+										<a href="/postdelete/{{ obj.id }}">
+											<i class="fa fa-trash-o" aria-hidden="true"></i> Delete
+										</a>
+										{% endif %}
+									</form>
+
+								</div>
+							</div>
+						</div>
+						{% endfor %}
+					</div>
+				</div>
+				<div class="col-lg-3 col-md-3 col-sm-12 col-xs-12 home-right-col">
+					<div class="home-right-area">
+						<div class="home-advts">
+							<div class="golden-heading">
+								<h3>Advertisements</h3>
+							</div>
+							<div class="right-image">
+								<img src=" {% static 'images/home-advs.png' %}">
+							</div>
+						</div>
+						<div class="home-event">
+							<div class="golden-heading">
+								<h3>Upcoming Events</h3>
+							</div>
+							{% for obj in events %}
+							<div class="right-image">
+								<img src="/media/{{ obj.event_photo }}">
+							</div>
+							{% endfor %}
+						</div>
+						<div class="home-contact">
+							<div class="golden-heading">
+								<h3>Upcoming Events</h3>
+							</div>
+							<div class="home-contact-dtl">
+								<table>
+									{% for obj in events %}
+									<tr>
+										<td> <img src='{% static "images/calendar.png" %}'> </td>
+										<td><a href="#"> {{obj.date}} {{obj.artist_name}} {{obj.event_name}}</a></td>
+									</tr>
+									{% endfor %}
+								</table>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+
+<!--webpage-->
+
+<br /><br />
+
+
+<nav aria-label="Page navigation example"
+	style="display: flex; align-items: center; justify-content: center; background: none;">
+	<ul class="pagination">
+
+		{% if content.has_previous %}
+		<li class="page-item"><a class="page-link" href="?page=1">&laquo First</a></li>
+		<li class="page-item"><a class="page-link" href="?page={{ content.previous_page_number }}"> Previous</a></li>
+
+		{% endif %}
+
+
+		{% for i in nums %}
+		<li class="page-item"><a class="page-link" href="?page={{ forloop.counter }}">{{ forloop.counter }}</a></li>
+
+		{% endfor %}
+
+		{% if content.has_next %}
+		<li class="page-item"><a class="page-link" href="?page={{ content.next_page_number }}">Next</a></li>
+		<li class="page-item"><a class="page-link" href="?page={{ content.paginator.num_pages }}">Last&raquo</a></li>
+
+		{% endif %}
+
+	</ul>
+</nav>
+<br />
+
+
+{% endblock webpage %}
+
+{% block JS %}
+
+<script src=" {% static 'js/jquery.js' %}" type="text/javascript"></script>
+<script src=" {% static 'js/popper.min.js' %}" type="text/javascript"></script>
+<script src=" {% static 'js/bootstrap.min.js' %}" type="text/javascript"></script>
+<script src=" {% static 'js/owl.carousel.min.js' %}"></script>
+<script src=" {% static 'js/custom.js' %}" type="text/javascript"></script>
+
+<script type="text/javascript">
+	$(function () {
+		$('.toggle-menu').click(function () {
+			$('.exo-menu').toggleClass('display');
+		});
+	});
+	$(document).ready(function () {
+		$(".toggle-menu").click(function () {
+			$(".mobile-close").show(400);
+		});
+		$(".mobile-close").click(function () {
+			$(".exo-menu").removeClass('display');
+			$(this).hide(400);
+		});
+	});
+
+
+	if ("userid" in localStorage) {
+
+		// alert("userid found")
+		document.getElementById("signin").style.display = "none";
+		document.getElementById("signup").style.display = "none";
+		//document.getElementById("vendor").style.display = "none";
+		document.getElementById("profile").style.display = "inline-block";
+		document.getElementById("logout").style.display = "inline-block";
+
+	} else {
+		// alert("Not found")
+		document.getElementById("signin").style.display = "inline-block";
+		document.getElementById("signup").style.display = "inline-block";
+		//document.getElementById("vendor").style.display = "inline-block";
+		document.getElementById("profile").style.display = "none";
+		document.getElementById("logout").style.display = "none";
+	}
+</script>
+
+
+{% comment %} Pop-Ups {% endcomment %}
+
+<script>
+	let urlPopup = document.getElementById("pop_url");
+	let popup = document.getElementById("pop_up");
+	let eventPopup = document.getElementById("pop_event");
+	let addEventForm = document.getElementById("addEventForm");
+
+	function openUrl() {
+		closePopups();
+		urlPopup.classList.add("open-url");
+	}
+
+	function closeUrl() {
+		urlPopup.classList.remove("open-url");
+	}
+
+	function openPop_up() {
+		closePopups();
+		popup.classList.add("open-popup");
+	}
+
+	function closePop_up() {
+		popup.classList.remove("open-popup");
+	}
+
+	function openEvent() {
+		closePopups();
+		eventPopup.classList.add("open-event");
+	}
+
+	function closeEvent() {
+		eventPopup.classList.remove("open-event");
+		addEventForm.reset();
+	}
+
+	function closePopups() {
+		urlPopup.classList.remove("open-url");
+		popup.classList.remove("open-popup");
+		eventPopup.classList.remove("open-event");
+	}
+</script>
+
+{% comment %} End {% endcomment %}
+
+{% comment %} Comments {% endcomment %}
+
+<script>
+	function openComment(event, postId) {
+		event.preventDefault();
+		let commentPopup = document.getElementById(`pop_comment_${postId}`);
+		commentPopup.classList.add("open-comment");
+	}
+
+	function closeComment(postId) {
+		let commentPopup = document.getElementById(`pop_comment_${postId}`);
+		commentPopup.classList.remove("open-comment");
+	}
+</script>
+
+{% comment %} End {% endcomment %}
+
+{% comment %} Rate {% endcomment %}
+
+<script>
+	function openRate(event, postId) {
+		event.preventDefault();
+		let ratePopup = document.getElementById(`pop_rate_${postId}`);
+		ratePopup.classList.add("open-rate");
+	}
+
+	function closeRate(postId) {
+		let ratePopup = document.getElementById(`pop_rate_${postId}`);
+		ratePopup.classList.remove("open-rate");
+	}
+</script>
+
+{% comment %} End {% endcomment %}
+
+
+{% endblock JS %}

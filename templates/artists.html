@@ -1,0 +1,765 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}
+Artists | Clap Station
+{% endblock title %}
+{% block webpage %}
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Gulzar&family=Lobster&display=swap" rel="stylesheet">
+<!--webpage-->
+
+<style>
+	.artist-section {
+		height: 100%;
+		width: 100%;
+	}
+
+	.artist-head {
+		margin: 20px 0px 16px 18px;
+		padding: 15px;
+		color: white;
+	}
+
+	.artist-head h2 {
+		font-family: 'Gulzar', serif;
+		font-family: 'Lobster', sans-serif;
+	}
+
+	.artist-block {
+		display: grid;
+		grid-template-columns: repeat(3, 500px);
+		align-items: center;
+		justify-content: center;
+	}
+
+	.artists-container {
+		margin: 20px 0px 16px 18px;
+		padding: 15px;
+		background-color: #fff;
+		border-radius: 20px;
+		width: 80%;
+		height: 190px;
+
+	}
+
+	.artists-container img {
+		height: 150px;
+		width: 150px;
+		border-radius: 50%;
+	}
+
+	.artist-content {
+		display: flex;
+		bottom: 100px;
+		position: relative;
+		left: 175px;
+	}
+
+	.artist-content a {
+		top: 30px;
+		position: relative;
+		right: 181px;
+	}
+
+	.follow {
+		position: relative;
+		bottom: 65px;
+		left: 170px;
+	}
+
+	.button-24 {
+		background: #bf9100;
+		border: 1px solid #bf9100;
+		border-radius: 6px;
+		box-shadow: rgba(0, 0, 0, 0.1) 1px 2px 4px;
+		box-sizing: border-box;
+		color: #FFFFFF;
+		cursor: pointer;
+		display: inline-block;
+		font-family: nunito, roboto, proxima-nova, "proxima nova", sans-serif;
+		font-size: 16px;
+		font-weight: 800;
+		line-height: 16px;
+		min-height: 40px;
+		outline: 0;
+		padding: 12px 14px;
+		text-align: center;
+		text-rendering: geometricprecision;
+		text-transform: none;
+		user-select: none;
+		-webkit-user-select: none;
+		touch-action: manipulation;
+		vertical-align: middle;
+	}
+
+	.button-24:hover,
+	.button-24:active {
+		background-color: initial;
+		background-position: 0 0;
+		color: #bf9100;
+	}
+
+	.button-24:active {
+		opacity: .5;
+	}
+
+	@media only screen and (max-width:1460px) {
+		.artist-block {
+			display: grid;
+			grid-template-columns: repeat(2, 500px);
+			align-items: center;
+			justify-content: center;
+		}
+	}
+
+	@media only screen and (max-width:950px) {
+		.artist-block {
+			display: grid;
+			grid-template-columns: repeat(1, 500px);
+			align-items: center;
+			justify-content: center;
+		}
+	}
+</style>
+
+<div class="artist-section">
+	<div class="artist-head">
+		<h2>Trending Artists</h2>
+	</div>
+	<div class="artist-block">
+		<div class="artists-container">
+			<img src="{% static 'images/profile-1.png' %}" alt="">
+			<div class="artist-content">
+				<h3>John Williams</h3>
+				<svg width="30px" height="18px" viewBox="0 0 67 71" version="1.1" xmlns="http://www.w3.org/2000/svg"
+					xlink="http://www.w3.org/1999/xlink">
+					<title>Verified</title>
+					<g id="Artboard-Copy-21" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+						<path
+							d="M62.0271467,11.8460115 C63.3031948,12.301743 64.3057889,13.0764748 65.0349592,14.1702303 C65.7641295,15.2639857 66.1287092,16.4944422 66.1287092,17.8616365 C66.1287092,23.6038527 65.4451223,29.0953343 64.077928,34.3362459 C62.7107336,39.5771575 60.9789801,44.0888311 58.8826155,47.8714021 C56.7862508,51.6539731 54.3481242,55.0719077 51.5681624,58.1253084 C48.7882005,61.1787091 46.0994253,63.639622 43.5017561,65.5081209 C40.9040869,67.3766198 38.3292428,68.8121523 35.7771467,69.8147615 C34.1365135,70.5439318 32.4959049,70.5439318 30.8552717,69.8147615 C27.0271276,68.2652746 23.3585445,65.9638653 19.8494124,62.9104646 C16.3402802,59.857064 13.1274217,56.1656946 10.2107405,51.8362459 C7.29405923,47.5067972 4.94707749,42.3798953 3.16972485,36.4553865 C1.39237222,30.5308777 0.503709228,24.333023 0.503709228,17.8616365 C0.503709228,17.3147588 0.572067919,16.7906755 0.708787353,16.2893709 C0.845506786,15.7880663 1.02779663,15.3095555 1.25566235,14.853824 C1.48352808,14.3980926 1.75696284,13.9879404 2.07597485,13.6233553 C2.39498686,13.2587701 2.75956655,12.9169766 3.16972485,12.5979646 C3.57988315,12.2789526 4.05839399,12.0283041 4.60527173,11.8460115 L30.8552717,0.908511513 C31.584442,0.543926357 32.4047463,0.361636513 33.3162092,0.361636513 C34.2276721,0.361636513 35.0479764,0.543926357 35.7771467,0.908511513 L62.0271467,11.8460115 Z M55.6013655,27.431949 C56.6951209,26.4293398 56.6951209,25.3811732 55.6013655,24.2874178 L52.593553,21.2796053 C52.1378215,20.8238738 51.6137382,20.5960115 51.0212874,20.5960115 C50.4288365,20.5960115 49.9047532,20.8238738 49.4490217,21.2796053 L28.9412092,41.7874178 L19.3708967,32.2171053 C18.9151653,31.7613738 18.391082,31.5335115 17.7986311,31.5335115 C17.2061802,31.5335115 16.6820969,31.7613738 16.2263655,32.2171053 L13.218553,35.2249178 C12.7628215,35.6806492 12.5349592,36.2047325 12.5349592,36.7971834 C12.5349592,37.3896343 12.7628215,37.9137176 13.218553,38.369449 L27.437303,52.588199 C28.4399122,53.5908082 29.4425063,53.5908082 30.4451155,52.588199 L55.6013655,27.431949 Z"
+							id="" fill="#00B4B3"></path>
+					</g>
+				</svg>
+				<a href="">15k Followers</a>
+			</div>
+			<div class="follow">
+				<button class="button-24" role="button">Follow</button>
+
+			</div>
+		</div>
+
+		<div class="artists-container">
+			<img src="{% static 'images/img-1.jpg' %}" alt="">
+			<div class="artist-content">
+				<h3>John Williams</h3>
+				<svg width="30px" height="18px" viewBox="0 0 67 71" version="1.1" xmlns="http://www.w3.org/2000/svg"
+					xlink="http://www.w3.org/1999/xlink">
+					<title>Verified</title>
+					<g id="Artboard-Copy-21" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+						<path
+							d="M62.0271467,11.8460115 C63.3031948,12.301743 64.3057889,13.0764748 65.0349592,14.1702303 C65.7641295,15.2639857 66.1287092,16.4944422 66.1287092,17.8616365 C66.1287092,23.6038527 65.4451223,29.0953343 64.077928,34.3362459 C62.7107336,39.5771575 60.9789801,44.0888311 58.8826155,47.8714021 C56.7862508,51.6539731 54.3481242,55.0719077 51.5681624,58.1253084 C48.7882005,61.1787091 46.0994253,63.639622 43.5017561,65.5081209 C40.9040869,67.3766198 38.3292428,68.8121523 35.7771467,69.8147615 C34.1365135,70.5439318 32.4959049,70.5439318 30.8552717,69.8147615 C27.0271276,68.2652746 23.3585445,65.9638653 19.8494124,62.9104646 C16.3402802,59.857064 13.1274217,56.1656946 10.2107405,51.8362459 C7.29405923,47.5067972 4.94707749,42.3798953 3.16972485,36.4553865 C1.39237222,30.5308777 0.503709228,24.333023 0.503709228,17.8616365 C0.503709228,17.3147588 0.572067919,16.7906755 0.708787353,16.2893709 C0.845506786,15.7880663 1.02779663,15.3095555 1.25566235,14.853824 C1.48352808,14.3980926 1.75696284,13.9879404 2.07597485,13.6233553 C2.39498686,13.2587701 2.75956655,12.9169766 3.16972485,12.5979646 C3.57988315,12.2789526 4.05839399,12.0283041 4.60527173,11.8460115 L30.8552717,0.908511513 C31.584442,0.543926357 32.4047463,0.361636513 33.3162092,0.361636513 C34.2276721,0.361636513 35.0479764,0.543926357 35.7771467,0.908511513 L62.0271467,11.8460115 Z M55.6013655,27.431949 C56.6951209,26.4293398 56.6951209,25.3811732 55.6013655,24.2874178 L52.593553,21.2796053 C52.1378215,20.8238738 51.6137382,20.5960115 51.0212874,20.5960115 C50.4288365,20.5960115 49.9047532,20.8238738 49.4490217,21.2796053 L28.9412092,41.7874178 L19.3708967,32.2171053 C18.9151653,31.7613738 18.391082,31.5335115 17.7986311,31.5335115 C17.2061802,31.5335115 16.6820969,31.7613738 16.2263655,32.2171053 L13.218553,35.2249178 C12.7628215,35.6806492 12.5349592,36.2047325 12.5349592,36.7971834 C12.5349592,37.3896343 12.7628215,37.9137176 13.218553,38.369449 L27.437303,52.588199 C28.4399122,53.5908082 29.4425063,53.5908082 30.4451155,52.588199 L55.6013655,27.431949 Z"
+							id="" fill="#00B4B3"></path>
+					</g>
+				</svg>
+				<a href="">15k Followers</a>
+			</div>
+			<div class="follow">
+				<button class="button-24" role="button">Follow</button>
+
+			</div>
+		</div>
+
+		<div class="artists-container">
+			<img src="{% static 'images/img-2.jpg' %}" alt="">
+			<div class="artist-content">
+				<h3>John Williams</h3>
+				<svg width="30px" height="18px" viewBox="0 0 67 71" version="1.1" xmlns="http://www.w3.org/2000/svg"
+					xlink="http://www.w3.org/1999/xlink">
+					<title>Verified</title>
+					<g id="Artboard-Copy-21" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+						<path
+							d="M62.0271467,11.8460115 C63.3031948,12.301743 64.3057889,13.0764748 65.0349592,14.1702303 C65.7641295,15.2639857 66.1287092,16.4944422 66.1287092,17.8616365 C66.1287092,23.6038527 65.4451223,29.0953343 64.077928,34.3362459 C62.7107336,39.5771575 60.9789801,44.0888311 58.8826155,47.8714021 C56.7862508,51.6539731 54.3481242,55.0719077 51.5681624,58.1253084 C48.7882005,61.1787091 46.0994253,63.639622 43.5017561,65.5081209 C40.9040869,67.3766198 38.3292428,68.8121523 35.7771467,69.8147615 C34.1365135,70.5439318 32.4959049,70.5439318 30.8552717,69.8147615 C27.0271276,68.2652746 23.3585445,65.9638653 19.8494124,62.9104646 C16.3402802,59.857064 13.1274217,56.1656946 10.2107405,51.8362459 C7.29405923,47.5067972 4.94707749,42.3798953 3.16972485,36.4553865 C1.39237222,30.5308777 0.503709228,24.333023 0.503709228,17.8616365 C0.503709228,17.3147588 0.572067919,16.7906755 0.708787353,16.2893709 C0.845506786,15.7880663 1.02779663,15.3095555 1.25566235,14.853824 C1.48352808,14.3980926 1.75696284,13.9879404 2.07597485,13.6233553 C2.39498686,13.2587701 2.75956655,12.9169766 3.16972485,12.5979646 C3.57988315,12.2789526 4.05839399,12.0283041 4.60527173,11.8460115 L30.8552717,0.908511513 C31.584442,0.543926357 32.4047463,0.361636513 33.3162092,0.361636513 C34.2276721,0.361636513 35.0479764,0.543926357 35.7771467,0.908511513 L62.0271467,11.8460115 Z M55.6013655,27.431949 C56.6951209,26.4293398 56.6951209,25.3811732 55.6013655,24.2874178 L52.593553,21.2796053 C52.1378215,20.8238738 51.6137382,20.5960115 51.0212874,20.5960115 C50.4288365,20.5960115 49.9047532,20.8238738 49.4490217,21.2796053 L28.9412092,41.7874178 L19.3708967,32.2171053 C18.9151653,31.7613738 18.391082,31.5335115 17.7986311,31.5335115 C17.2061802,31.5335115 16.6820969,31.7613738 16.2263655,32.2171053 L13.218553,35.2249178 C12.7628215,35.6806492 12.5349592,36.2047325 12.5349592,36.7971834 C12.5349592,37.3896343 12.7628215,37.9137176 13.218553,38.369449 L27.437303,52.588199 C28.4399122,53.5908082 29.4425063,53.5908082 30.4451155,52.588199 L55.6013655,27.431949 Z"
+							id="" fill="#00B4B3"></path>
+					</g>
+				</svg>
+				<a href="">15k Followers</a>
+			</div>
+			<div class="follow">
+				<button class="button-24" role="button">Follow</button>
+
+			</div>
+		</div>
+
+		<div class="artists-container">
+			<img src="{% static 'images/img-3.jpg' %}" alt="">
+			<div class="artist-content">
+				<h3>John Williams</h3>
+				<svg width="30px" height="18px" viewBox="0 0 67 71" version="1.1" xmlns="http://www.w3.org/2000/svg"
+					xlink="http://www.w3.org/1999/xlink">
+					<title>Verified</title>
+					<g id="Artboard-Copy-21" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+						<path
+							d="M62.0271467,11.8460115 C63.3031948,12.301743 64.3057889,13.0764748 65.0349592,14.1702303 C65.7641295,15.2639857 66.1287092,16.4944422 66.1287092,17.8616365 C66.1287092,23.6038527 65.4451223,29.0953343 64.077928,34.3362459 C62.7107336,39.5771575 60.9789801,44.0888311 58.8826155,47.8714021 C56.7862508,51.6539731 54.3481242,55.0719077 51.5681624,58.1253084 C48.7882005,61.1787091 46.0994253,63.639622 43.5017561,65.5081209 C40.9040869,67.3766198 38.3292428,68.8121523 35.7771467,69.8147615 C34.1365135,70.5439318 32.4959049,70.5439318 30.8552717,69.8147615 C27.0271276,68.2652746 23.3585445,65.9638653 19.8494124,62.9104646 C16.3402802,59.857064 13.1274217,56.1656946 10.2107405,51.8362459 C7.29405923,47.5067972 4.94707749,42.3798953 3.16972485,36.4553865 C1.39237222,30.5308777 0.503709228,24.333023 0.503709228,17.8616365 C0.503709228,17.3147588 0.572067919,16.7906755 0.708787353,16.2893709 C0.845506786,15.7880663 1.02779663,15.3095555 1.25566235,14.853824 C1.48352808,14.3980926 1.75696284,13.9879404 2.07597485,13.6233553 C2.39498686,13.2587701 2.75956655,12.9169766 3.16972485,12.5979646 C3.57988315,12.2789526 4.05839399,12.0283041 4.60527173,11.8460115 L30.8552717,0.908511513 C31.584442,0.543926357 32.4047463,0.361636513 33.3162092,0.361636513 C34.2276721,0.361636513 35.0479764,0.543926357 35.7771467,0.908511513 L62.0271467,11.8460115 Z M55.6013655,27.431949 C56.6951209,26.4293398 56.6951209,25.3811732 55.6013655,24.2874178 L52.593553,21.2796053 C52.1378215,20.8238738 51.6137382,20.5960115 51.0212874,20.5960115 C50.4288365,20.5960115 49.9047532,20.8238738 49.4490217,21.2796053 L28.9412092,41.7874178 L19.3708967,32.2171053 C18.9151653,31.7613738 18.391082,31.5335115 17.7986311,31.5335115 C17.2061802,31.5335115 16.6820969,31.7613738 16.2263655,32.2171053 L13.218553,35.2249178 C12.7628215,35.6806492 12.5349592,36.2047325 12.5349592,36.7971834 C12.5349592,37.3896343 12.7628215,37.9137176 13.218553,38.369449 L27.437303,52.588199 C28.4399122,53.5908082 29.4425063,53.5908082 30.4451155,52.588199 L55.6013655,27.431949 Z"
+							id="" fill="#00B4B3"></path>
+					</g>
+				</svg>
+				<a href="">15k Followers</a>
+			</div>
+			<div class="follow">
+				<button class="button-24" role="button">Follow</button>
+
+			</div>
+		</div>
+
+		<div class="artists-container">
+			<img src="{% static 'images/img-4.jpg' %}" alt="">
+			<div class="artist-content">
+				<h3>John Williams</h3>
+				<svg width="30px" height="18px" viewBox="0 0 67 71" version="1.1" xmlns="http://www.w3.org/2000/svg"
+					xlink="http://www.w3.org/1999/xlink">
+					<title>Verified</title>
+					<g id="Artboard-Copy-21" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+						<path
+							d="M62.0271467,11.8460115 C63.3031948,12.301743 64.3057889,13.0764748 65.0349592,14.1702303 C65.7641295,15.2639857 66.1287092,16.4944422 66.1287092,17.8616365 C66.1287092,23.6038527 65.4451223,29.0953343 64.077928,34.3362459 C62.7107336,39.5771575 60.9789801,44.0888311 58.8826155,47.8714021 C56.7862508,51.6539731 54.3481242,55.0719077 51.5681624,58.1253084 C48.7882005,61.1787091 46.0994253,63.639622 43.5017561,65.5081209 C40.9040869,67.3766198 38.3292428,68.8121523 35.7771467,69.8147615 C34.1365135,70.5439318 32.4959049,70.5439318 30.8552717,69.8147615 C27.0271276,68.2652746 23.3585445,65.9638653 19.8494124,62.9104646 C16.3402802,59.857064 13.1274217,56.1656946 10.2107405,51.8362459 C7.29405923,47.5067972 4.94707749,42.3798953 3.16972485,36.4553865 C1.39237222,30.5308777 0.503709228,24.333023 0.503709228,17.8616365 C0.503709228,17.3147588 0.572067919,16.7906755 0.708787353,16.2893709 C0.845506786,15.7880663 1.02779663,15.3095555 1.25566235,14.853824 C1.48352808,14.3980926 1.75696284,13.9879404 2.07597485,13.6233553 C2.39498686,13.2587701 2.75956655,12.9169766 3.16972485,12.5979646 C3.57988315,12.2789526 4.05839399,12.0283041 4.60527173,11.8460115 L30.8552717,0.908511513 C31.584442,0.543926357 32.4047463,0.361636513 33.3162092,0.361636513 C34.2276721,0.361636513 35.0479764,0.543926357 35.7771467,0.908511513 L62.0271467,11.8460115 Z M55.6013655,27.431949 C56.6951209,26.4293398 56.6951209,25.3811732 55.6013655,24.2874178 L52.593553,21.2796053 C52.1378215,20.8238738 51.6137382,20.5960115 51.0212874,20.5960115 C50.4288365,20.5960115 49.9047532,20.8238738 49.4490217,21.2796053 L28.9412092,41.7874178 L19.3708967,32.2171053 C18.9151653,31.7613738 18.391082,31.5335115 17.7986311,31.5335115 C17.2061802,31.5335115 16.6820969,31.7613738 16.2263655,32.2171053 L13.218553,35.2249178 C12.7628215,35.6806492 12.5349592,36.2047325 12.5349592,36.7971834 C12.5349592,37.3896343 12.7628215,37.9137176 13.218553,38.369449 L27.437303,52.588199 C28.4399122,53.5908082 29.4425063,53.5908082 30.4451155,52.588199 L55.6013655,27.431949 Z"
+							id="" fill="#00B4B3"></path>
+					</g>
+				</svg>
+				<a href="">15k Followers</a>
+			</div>
+			<div class="follow">
+				<button class="button-24" role="button">Follow</button>
+
+			</div>
+		</div>
+
+		<div class="artists-container">
+			<img src="{% static 'images/img-5.jpg' %}" alt="">
+			<div class="artist-content">
+				<h3>John Williams</h3>
+				<svg width="30px" height="18px" viewBox="0 0 67 71" version="1.1" xmlns="http://www.w3.org/2000/svg"
+					xlink="http://www.w3.org/1999/xlink">
+					<title>Verified</title>
+					<g id="Artboard-Copy-21" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+						<path
+							d="M62.0271467,11.8460115 C63.3031948,12.301743 64.3057889,13.0764748 65.0349592,14.1702303 C65.7641295,15.2639857 66.1287092,16.4944422 66.1287092,17.8616365 C66.1287092,23.6038527 65.4451223,29.0953343 64.077928,34.3362459 C62.7107336,39.5771575 60.9789801,44.0888311 58.8826155,47.8714021 C56.7862508,51.6539731 54.3481242,55.0719077 51.5681624,58.1253084 C48.7882005,61.1787091 46.0994253,63.639622 43.5017561,65.5081209 C40.9040869,67.3766198 38.3292428,68.8121523 35.7771467,69.8147615 C34.1365135,70.5439318 32.4959049,70.5439318 30.8552717,69.8147615 C27.0271276,68.2652746 23.3585445,65.9638653 19.8494124,62.9104646 C16.3402802,59.857064 13.1274217,56.1656946 10.2107405,51.8362459 C7.29405923,47.5067972 4.94707749,42.3798953 3.16972485,36.4553865 C1.39237222,30.5308777 0.503709228,24.333023 0.503709228,17.8616365 C0.503709228,17.3147588 0.572067919,16.7906755 0.708787353,16.2893709 C0.845506786,15.7880663 1.02779663,15.3095555 1.25566235,14.853824 C1.48352808,14.3980926 1.75696284,13.9879404 2.07597485,13.6233553 C2.39498686,13.2587701 2.75956655,12.9169766 3.16972485,12.5979646 C3.57988315,12.2789526 4.05839399,12.0283041 4.60527173,11.8460115 L30.8552717,0.908511513 C31.584442,0.543926357 32.4047463,0.361636513 33.3162092,0.361636513 C34.2276721,0.361636513 35.0479764,0.543926357 35.7771467,0.908511513 L62.0271467,11.8460115 Z M55.6013655,27.431949 C56.6951209,26.4293398 56.6951209,25.3811732 55.6013655,24.2874178 L52.593553,21.2796053 C52.1378215,20.8238738 51.6137382,20.5960115 51.0212874,20.5960115 C50.4288365,20.5960115 49.9047532,20.8238738 49.4490217,21.2796053 L28.9412092,41.7874178 L19.3708967,32.2171053 C18.9151653,31.7613738 18.391082,31.5335115 17.7986311,31.5335115 C17.2061802,31.5335115 16.6820969,31.7613738 16.2263655,32.2171053 L13.218553,35.2249178 C12.7628215,35.6806492 12.5349592,36.2047325 12.5349592,36.7971834 C12.5349592,37.3896343 12.7628215,37.9137176 13.218553,38.369449 L27.437303,52.588199 C28.4399122,53.5908082 29.4425063,53.5908082 30.4451155,52.588199 L55.6013655,27.431949 Z"
+							id="" fill="#00B4B3"></path>
+					</g>
+				</svg>
+				<a href="">15k Followers</a>
+			</div>
+			<div class="follow">
+				<button class="button-24" role="button">Follow</button>
+
+			</div>
+		</div>
+	</div>
+</div>
+
+
+
+
+
+
+
+
+
+
+				<div class="row">
+				    <div id="artist"></div>
+					<div class="col-lg-3 col-md-4 col-sm-12 col-xs-12 artist-title-col">
+						<div class="artist-box-wrap-in">
+							<div class="white-heading">
+				 				<h3>Artist Namessss</h3>	
+			 				</div>
+			 				<div class="admy-btn">
+				 				<button class="cmmn-btn top-left-book  slowHover" type="button" data-toggle="modal" data-target="#bookModal"><i class="fa fa-arrow-circle-right" aria-hidden="true"></i>Book</button>
+				 			</div>
+				 			Modal book-modal
+							<div id="bookModal" class="book-modal modal fade" role="dialog">
+							  <div class="modal-dialog">
+
+							    Modal content
+							    <div class="modal-content">
+							      	<div class="modal-header">
+							      		<h1 class="modal-title">Select Available Slot</h1>
+							        	<button type="button" class="close" data-dismiss="modal"><img src="images/cross.png"></button>
+							      	</div>
+							      	<div class="modal-body">
+							      		<div class="book-body-wrap">
+								       		<div class="row">
+								       			<div class="col-lg-4 col-md-3 col-sm-12 col-xs-12 book-lft-col">
+								       				<div class="book-lft-wrap">
+									       				<div class="lft-top">
+									       					<h1>07<sup>SEPT</sup><sub>MONDAY</sub></h1>
+									       				</div>
+									       				<div class="lft-mddl">
+									       					<p>Select Available Slots</p>
+									       					<table>
+									       						<tr>
+									       							<td>
+									       								<label class="slot-check">9am - 10am
+																		  	<input type="checkbox">
+																		  	<span class="checkmark checkmark-green"></span>
+																		</label>
+									       							</td>
+									       							<td>
+									       								<label class="slot-check">9am - 10am
+																		  	<input type="checkbox">
+																		  	<span class="checkmark"></span>
+																		</label>
+									       							</td>
+									       						</tr>
+									       						<tr>
+									       							<td>
+									       								<label class="slot-check">9am - 10am
+																		  	<input type="checkbox">
+																		  	<span class="checkmark"></span>
+																		</label>
+									       							</td>
+									       							<td>
+									       								<label class="slot-check">9am - 10am
+																		  	<input type="checkbox">
+																		  	<span class="checkmark"></span>
+																		</label>
+									       							</td>
+									       						</tr>
+									       						<tr>
+									       							<td>
+									       								<label class="slot-check">9am - 10am
+																		  	<input type="checkbox">
+																		  	<span class="checkmark checkmark-green"></span>
+																		</label>
+									       							</td>
+									       							<td> -->
+<!--				       								<label class="slot-check">9am - 10am-->
+<!--													  	<input type="checkbox">-->
+<!--													  	<span class="checkmark checkmark-green"></span>-->
+<!--													</label>-->
+<!--				       							</td>-->
+<!--				       						</tr>-->
+<!--				       						<tr>-->
+<!--				       							<td>-->
+<!--				       								<label class="slot-check">9am - 10am-->
+<!--													  	<input type="checkbox">-->
+<!--													  	<span class="checkmark"></span>-->
+<!--													</label>-->
+<!--				       							</td>-->
+<!--				       							<td>-->
+<!--				       								<label class="slot-check">9am - 10am-->
+<!--													  	<input type="checkbox">-->
+<!--													  	<span class="checkmark"></span>-->
+<!--													</label>-->
+<!--				       							</td>-->
+<!--				       						</tr>-->
+<!--				       						<tr>-->
+<!--				       							<td>-->
+<!--				       								<label class="slot-check">9am - 10am-->
+<!--													  	<input type="checkbox">-->
+<!--													  	<span class="checkmark checkmark-green"></span>-->
+<!--													</label>-->
+<!--				       							</td>-->
+<!--				       							<td>-->
+<!--				       								<label class="slot-check">9am - 10am-->
+<!--													  	<input type="checkbox">-->
+<!--													  	<span class="checkmark checkmark-green"></span>-->
+<!--													</label>-->
+<!--				       							</td>-->
+<!--				       						</tr>-->
+<!--				       						<tr>-->
+<!--				       							<td>-->
+<!--				       								<label class="slot-check">9am - 10am-->
+<!--													  	<input type="checkbox">-->
+<!--													  	<span class="checkmark"></span>-->
+<!--													</label>-->
+<!--				       							</td>-->
+<!--				       							<td>-->
+<!--				       								<label class="slot-check">9am - 10am-->
+<!--													  	<input type="checkbox">-->
+<!--													  	<span class="checkmark checkmark-green"></span>-->
+<!--													</label>-->
+<!--				       							</td>-->
+<!--				       						</tr>-->
+<!--				       					</table>-->
+<!--				       				</div>-->
+<!--				       				<p class="avail"><i class="fa fa-square" aria-hidden="true"></i>Available Slot</p>			-->
+<!--				       				<p class="unavail"><i class="fa fa-square" aria-hidden="true"></i>Unavailable Slot</p>	-->
+
+<!--				       				<h4 class="book-left-bottom-heading text-center">Artists</h4>-->
+<!--			       				</div>-->
+<!--			       			</div>-->
+<!--			       			<div class="col-lg-8 col-md-3 col-sm-12 col-xs-12 book-rght-col">-->
+<!--			       				<div class="right-calen">-->
+<!--			       					<div class="calendar">-->
+<!--									    <div class="calendar__month">-->
+<!--									        <div class="cal-month__previous"><i class="fa fa-caret-left" aria-hidden="true"></i></div>-->
+<!--									        <div class="cal-month__current"></div>-->
+<!--									        <div class="cal-month__next"><i class="fa fa-caret-right" aria-hidden="true"></i></div>-->
+<!--									    </div>-->
+<!--									    <div class="calendar-months-list">-->
+<!--									        <span class="month-hover">Jan</span>-->
+<!--									        <span class="month-hover">Feb</span> -->
+<!--									        <span class="month-hover">Mar</span> -->
+<!--									        <span class="month-hover">Apr</span>-->
+<!--									        <span class="month-hover">May</span>-->
+<!--									        <span class="month-hover">Jun</span>-->
+<!--									        <span class="month-hover">July</span> -->
+<!--									        <span class="month-hover">Aug</span> -->
+<!--									        <span class="month-hover">Sep</span> -->
+<!--									        <span class="month-hover">Oct</span> -->
+<!--									        <span class="month-hover">Nov</span> -->
+<!--									        <span class="month-hover">Dec</span>-->
+<!--									    </div><!-- months -->-->
+<!--									    <div class="calendar__head">-->
+<!--									        <div class="cal-head__day"></div>-->
+<!--									        <div class="cal-head__day"></div>-->
+<!--									        <div class="cal-head__day"></div>-->
+<!--									        <div class="cal-head__day"></div>-->
+<!--									        <div class="cal-head__day"></div>-->
+<!--									        <div class="cal-head__day"></div>-->
+<!--									        <div class="cal-head__day"></div>-->
+<!--									    </div>-->
+<!--									    <div class="calendar__body">-->
+<!--									        <div class="cal-body__week">-->
+<!--									            <div class="cal-body__day"></div>-->
+<!--									          	<div class="cal-body__day"></div>-->
+<!--									          	<div class="cal-body__day"></div>-->
+<!--									          	<div class="cal-body__day"></div>-->
+<!--									          	<div class="cal-body__day"></div>-->
+<!--									          	<div class="cal-body__day"></div>-->
+<!--									          	<div class="cal-body__day"></div>-->
+<!--									        </div>-->
+<!--									        <div class="cal-body__week">-->
+<!--									          <div class="cal-body__day"></div>-->
+<!--									          <div class="cal-body__day"></div>-->
+<!--									          <div class="cal-body__day"></div>-->
+<!--									          <div class="cal-body__day"></div>-->
+<!--									          <div class="cal-body__day"></div>-->
+<!--									          <div class="cal-body__day"></div>-->
+<!--									          <div class="cal-body__day"></div>-->
+<!--									        </div>-->
+<!--									        <div class="cal-body__week">-->
+<!--									          <div class="cal-body__day"></div>-->
+<!--									          <div class="cal-body__day"></div>-->
+<!--									          <div class="cal-body__day"></div>-->
+<!--									          <div class="cal-body__day"></div>-->
+<!--									          <div class="cal-body__day"></div>-->
+<!--									          <div class="cal-body__day"></div>-->
+<!--									          <div class="cal-body__day"></div>-->
+<!--									        </div>-->
+<!--									        <div class="cal-body__week">-->
+<!--									          <div class="cal-body__day"></div>-->
+<!--									          <div class="cal-body__day"></div>-->
+<!--									          <div class="cal-body__day"></div>-->
+<!--									          <div class="cal-body__day"></div>-->
+<!--									          <div class="cal-body__day"></div>-->
+<!--									          <div class="cal-body__day"></div>-->
+<!--									          <div class="cal-body__day"></div>-->
+<!--									        </div>-->
+<!--									        <div class="cal-body__week">-->
+<!--									          <div class="cal-body__day"></div>-->
+<!--									          <div class="cal-body__day"></div>-->
+<!--									          <div class="cal-body__day"></div>-->
+<!--									          <div class="cal-body__day"></div>-->
+<!--									          <div class="cal-body__day"></div>-->
+<!--									          <div class="cal-body__day"></div>-->
+<!--									          <div class="cal-body__day"></div>-->
+<!--									        </div>-->
+<!--									        <div class="cal-body__week">-->
+<!--									          <div class="cal-body__day"></div>-->
+<!--									          <div class="cal-body__day"></div>-->
+<!--									          <div class="cal-body__day"></div>-->
+<!--									          <div class="cal-body__day"></div>-->
+<!--									          <div class="cal-body__day"></div>-->
+<!--									          <div class="cal-body__day"></div>-->
+<!--									          <div class="cal-body__day"></div>-->
+<!--									        </div>-->
+<!--									    </div>-->
+<!--									</div>-->
+<!--			       				</div>-->
+<!--			       			</div>-->
+<!--			       		</div>-->
+<!--			       	</div>	-->
+<!--		      	</div>-->
+<!--		      	<div class="modal-footer">-->
+<!--		        	<button type="button" class="cmmn-btn book-btn slowHover" data-dismiss="modal">Proceed to Pay <img src="images/proceedtopay.png"></button>-->
+<!--		      	</div>-->
+<!--		    	</div>-->
+<!--		  	</div><!---modal-dialog--->-->
+<!--		</div><!----book-modal---->-->
+<!--			<div class="posts-images artist-img">-->
+<!-- 			<img src="images/artist.jpg">-->
+<!-- 			<p>Alienum phaedrum torquatos nec eu.</p>-->
+<!-- 			    <ul>-->
+<!--	 			   	<li><a href="#"><i class="fa fa-thumbs-up" aria-hidden="true"></i> </a></li>-->
+<!--	 			   	<li><a href="#"><i class="fa fa-star" aria-hidden="true"></i></a></li>-->
+<!--	 			   	<li><a href="#"><i class="fa fa-commenting-o" aria-hidden="true"></i></a></li>-->
+<!--	 			   	<li><a href="#"><i class="fa fa-share-square-o" aria-hidden="true"></i></a></li>-->
+<!-- 			    </ul>-->
+<!-- 		</div>-->
+<!-- 	</div>	-->
+<!--</div>-->
+<!--<div class="col-lg-3 col-md-4 col-sm-12 col-xs-12 artist-title-col">-->
+<!--	<div class="artist-box-wrap-in">-->
+<!--		<div class="white-heading">-->
+<!--				<h3>Artist Nameasdf</h3>	-->
+<!--			</div>-->
+<!--			<div class="admy-btn">-->
+<!--				<button class="cmmn-btn top-left-book  slowHover" type="button" data-toggle="modal" data-target="#bookModal"><i class="fa fa-arrow-circle-right" aria-hidden="true"></i>Book</button>-->
+<!--			</div>-->
+<!--			<div class="posts-images artist-img">-->
+<!-- 			<img src="images/artist.jpg">-->
+<!-- 			<p>Alienum phaedrum torquatos nec eu.</p>-->
+<!-- 			    <ul>-->
+<!--	 			   	<li><a href="#"><i class="fa fa-thumbs-up" aria-hidden="true"></i> </a></li>-->
+<!--	 			   	<li><a href="#"><i class="fa fa-star" aria-hidden="true"></i></a></li>-->
+<!--	 			   	<li><a href="#"><i class="fa fa-commenting-o" aria-hidden="true"></i></a></li>-->
+<!--	 			   	<li><a href="#"><i class="fa fa-share-square-o" aria-hidden="true"></i></a></li>-->
+<!-- 			    </ul>-->
+<!-- 		</div>-->
+<!-- 	</div>	-->
+<!--</div>-->
+<!--<div class="col-lg-3 col-md-4 col-sm-12 col-xs-12 artist-title-col">-->
+<!--	<div class="artist-box-wrap-in">-->
+<!--		<div class="white-heading">-->
+<!--				<h3>Artist Name</h3>	-->
+<!--			</div>-->
+<!--			<div class="admy-btn">-->
+<!--				<button class="cmmn-btn top-left-book  slowHover" type="button" data-toggle="modal" data-target="#bookModal"><i class="fa fa-arrow-circle-right" aria-hidden="true"></i>Book</button>-->
+<!--			</div>-->
+<!--			<div class="posts-images artist-img">-->
+<!-- 			<img src="images/artist.jpg">-->
+<!-- 			<p>Alienum phaedrum torquatos nec eu.</p>-->
+<!-- 			    <ul>-->
+<!--	 			   	<li><a href="#"><i class="fa fa-thumbs-up" aria-hidden="true"></i> </a></li>-->
+<!--	 			   	<li><a href="#"><i class="fa fa-star" aria-hidden="true"></i></a></li>-->
+<!--	 			   	<li><a href="#"><i class="fa fa-commenting-o" aria-hidden="true"></i></a></li>-->
+<!--	 			   	<li><a href="#"><i class="fa fa-share-square-o" aria-hidden="true"></i></a></li>-->
+<!-- 			    </ul>-->
+<!-- 		</div>-->
+<!-- 	</div>	-->
+<!--</div>-->
+<!--<div class="col-lg-3 col-md-4 col-sm-12 col-xs-12 artist-title-col">-->
+<!--	<div class="artist-box-wrap-in">-->
+<!--		<div class="white-heading">-->
+<!--				<h3>Artist Nameasdfasdf</h3>	-->
+<!--			</div>-->
+<!--			<div class="admy-btn">-->
+<!--				<button class="cmmn-btn top-left-book  slowHover" type="button" data-toggle="modal" data-target="#bookModal"><i class="fa fa-arrow-circle-right" aria-hidden="true"></i>Book</button>-->
+<!--			</div>-->
+<!--			<div class="posts-images artist-img">-->
+<!-- 			<img src="images/artist.jpg">-->
+<!-- 			<p>Alienum phaedrum torquatos nec eu.</p>-->
+<!-- 			    <ul>-->
+<!--	 			   	<li><a href="#"><i class="fa fa-thumbs-up" aria-hidden="true"></i> </a></li>-->
+<!--	 			   	<li><a href="#"><i class="fa fa-star" aria-hidden="true"></i></a></li>-->
+<!--	 			   	<li><a href="#"><i class="fa fa-commenting-o" aria-hidden="true"></i></a></li>-->
+<!--	 			   	<li><a href="#"><i class="fa fa-share-square-o" aria-hidden="true"></i></a></li>-->
+<!-- 			    </ul>-->
+<!-- 		</div>-->
+<!-- 	</div>	-->
+<!--</div>-->
+<!--<div class="col-lg-3 col-md-4 col-sm-12 col-xs-12 artist-title-col">-->
+<!--	<div class="artist-box-wrap-in">-->
+<!--		<div class="white-heading">-->
+<!--				<h3>Artist Name</h3>	-->
+<!--			</div>-->
+<!--			<div class="admy-btn">-->
+<!--				<button class="cmmn-btn top-left-book  slowHover" type="button" data-toggle="modal" data-target="#bookModal"><i class="fa fa-arrow-circle-right" aria-hidden="true"></i>Book</button>-->
+<!--			</div>-->
+<!--			<div class="posts-images artist-img">-->
+<!-- 			<img src="images/artist.jpg">-->
+<!-- 			<p>Alienum phaedrum torquatos nec eu.</p>-->
+<!-- 			    <ul>-->
+<!--	 			   	<li><a href="#"><i class="fa fa-thumbs-up" aria-hidden="true"></i> </a></li>-->
+<!--	 			   	<li><a href="#"><i class="fa fa-star" aria-hidden="true"></i></a></li>-->
+<!--	 			   	<li><a href="#"><i class="fa fa-commenting-o" aria-hidden="true"></i></a></li>-->
+<!--	 			   	<li><a href="#"><i class="fa fa-share-square-o" aria-hidden="true"></i></a></li>-->
+<!-- 			    </ul>-->
+<!-- 		</div>-->
+<!-- 	</div>	-->
+<!--</div>-->
+<!--<div class="col-lg-3 col-md-4 col-sm-12 col-xs-12 artist-title-col">-->
+<!--	<div class="artist-box-wrap-in">-->
+<!--		<div class="white-heading">-->
+<!--				<h3>Artist Name</h3>	-->
+<!--			</div>-->
+<!--			<div class="admy-btn">-->
+<!--				<button class="cmmn-btn top-left-book  slowHover" type="button" data-toggle="modal" data-target="#bookModal"><i class="fa fa-arrow-circle-right" aria-hidden="true"></i>Book</button>-->
+<!--			</div>-->
+<!--			<div class="posts-images artist-img">-->
+<!-- 			<img src="images/artist.jpg">-->
+<!-- 			<p>Alienum phaedrum torquatos nec eu.</p>-->
+<!-- 			    <ul>-->
+<!--	 			   	<li><a href="#"><i class="fa fa-thumbs-up" aria-hidden="true"></i> </a></li>-->
+<!--	 			   	<li><a href="#"><i class="fa fa-star" aria-hidden="true"></i></a></li>-->
+<!--	 			   	<li><a href="#"><i class="fa fa-commenting-o" aria-hidden="true"></i></a></li>-->
+<!--	 			   	<li><a href="#"><i class="fa fa-share-square-o" aria-hidden="true"></i></a></li>-->
+<!-- 			    </ul>-->
+<!-- 		</div>-->
+<!-- 	</div>	-->
+<!--</div>-->
+<!--<div class="col-lg-3 col-md-4 col-sm-12 col-xs-12 artist-title-col">-->
+<!--	<div class="artist-box-wrap-in">-->
+<!--		<div class="white-heading">-->
+<!--				<h3>Artist Name</h3>	-->
+<!--			</div>-->
+<!--			<div class="admy-btn">-->
+<!--				<button class="cmmn-btn top-left-book  slowHover" type="button" data-toggle="modal" data-target="#bookModal"><i class="fa fa-arrow-circle-right" aria-hidden="true"></i>Book</button>-->
+<!--			</div>-->
+<!--			<div class="posts-images artist-img">-->
+<!-- 			<img src="images/artist.jpg">-->
+<!-- 			<p>Alienum phaedrum torquatos nec eu.</p>-->
+<!-- 			    <ul>-->
+<!--	 			   	<li><a href="#"><i class="fa fa-thumbs-up" aria-hidden="true"></i> </a></li>-->
+<!--	 			   	<li><a href="#"><i class="fa fa-star" aria-hidden="true"></i></a></li>-->
+<!--	 			   	<li><a href="#"><i class="fa fa-commenting-o" aria-hidden="true"></i></a></li>-->
+<!--	 			   	<li><a href="#"><i class="fa fa-share-square-o" aria-hidden="true"></i></a></li>-->
+<!-- 			    </ul>-->
+<!-- 		</div>-->
+<!-- 	</div>	-->
+<!--</div>-->
+<!--<div class="col-lg-3 col-md-4 col-sm-12 col-xs-12 artist-title-col">-->
+<!--	<div class="artist-box-wrap-in">-->
+<!--		<div class="white-heading">-->
+<!--				<h3>Artist Name</h3>	-->
+<!--			</div>-->
+<!--			<div class="admy-btn">-->
+<!--				<button class="cmmn-btn top-left-book  slowHover" type="button" data-toggle="modal" data-target="#bookModal"><i class="fa fa-arrow-circle-right" aria-hidden="true"></i>Book</button>-->
+<!--			</div>-->
+<!--			<div class="posts-images artist-img">-->
+<!-- 			<img src="images/artist.jpg">-->
+<!-- 			<p>Alienum phaedrum torquatos nec eu.</p>-->
+<!-- 			    <ul>-->
+<!--	 			   	<li><a href="#"><i class="fa fa-thumbs-up" aria-hidden="true"></i> </a></li>-->
+<!--	 			   	<li><a href="#"><i class="fa fa-star" aria-hidden="true"></i></a></li>-->
+<!--	 			   	<li><a href="#"><i class="fa fa-commenting-o" aria-hidden="true"></i></a></li>-->
+<!--	 			   	<li><a href="#"><i class="fa fa-share-square-o" aria-hidden="true"></i></a></li>-->
+<!-- 			    </ul>-->
+<!-- 		</div>-->
+<!-- 	</div>	-->
+<!--</div>-->
+<!--<div class="col-lg-3 col-md-4 col-sm-12 col-xs-12 artist-title-col">-->
+<!--	<div class="artist-box-wrap-in">-->
+<!--		<div class="white-heading">-->
+<!--				<h3>Artist Name</h3>	-->
+<!--			</div>-->
+<!--			<div class="admy-btn">-->
+<!--				<button class="cmmn-btn top-left-book  slowHover" type="button" data-toggle="modal" data-target="#bookModal"><i class="fa fa-arrow-circle-right" aria-hidden="true"></i>Book</button>-->
+<!--			</div>-->
+<!--			<div class="posts-images artist-img">-->
+<!-- 			<img src="images/artist.jpg">-->
+<!-- 			<p>Alienum phaedrum torquatos nec eu.</p>-->
+<!-- 			    <ul>-->
+<!--	 			   	<li><a href="#"><i class="fa fa-thumbs-up" aria-hidden="true"></i> </a></li>-->
+<!--	 			   	<li><a href="#"><i class="fa fa-star" aria-hidden="true"></i></a></li>-->
+<!--	 			   	<li><a href="#"><i class="fa fa-commenting-o" aria-hidden="true"></i></a></li>-->
+<!--	 			   	<li><a href="#"><i class="fa fa-share-square-o" aria-hidden="true"></i></a></li>-->
+<!-- 			    </ul>-->
+<!-- 		</div>-->
+<!-- 	</div>	-->
+<!--</div>-->
+<!--<div class="col-lg-3 col-md-4 col-sm-12 col-xs-12 artist-title-col">-->
+<!--	<div class="artist-box-wrap-in">-->
+<!--		<div class="white-heading">-->
+<!--				<h3>Artist Name</h3>	-->
+<!--			</div>-->
+<!--			<div class="admy-btn">-->
+<!--				<button class="cmmn-btn top-left-book  slowHover" type="button" data-toggle="modal" data-target="#bookModal"><i class="fa fa-arrow-circle-right" aria-hidden="true"></i>Book</button>-->
+<!--			</div>-->
+<!--			<div class="posts-images artist-img">-->
+<!-- 			<img src="images/artist.jpg">-->
+<!-- 			<p>Alienum phaedrum torquatos nec eu.</p>-->
+<!-- 			    <ul>-->
+<!--	 			   	<li><a href="#"><i class="fa fa-thumbs-up" aria-hidden Namessss="true"></i> </a></li>-->
+<!--	 			   	<li><a href="#"><i class="fa fa-star" aria-hidden="true"></i></a></li>-->
+<!--	 			   	<li><a href="#"><i class="fa fa-commenting-o" aria-hidden="true"></i></a></li>-->
+<!--	 			   	<li><a href="#"><i class="fa fa-share-square-o" aria-hidden="true"></i></a></li>-->
+<!-- 			    </ul>-->
+<!-- 		</div>-->
+<!-- 	</div>	-->
+<!--</div>-->
+<!--<div class="col-lg-3 col-md-4 col-sm-12 col-xs-12 artist-title-col">-->
+<!--	<div class="artist-box-wrap-in">-->
+<!--		<div class="white-heading">-->
+<!--				<h3>Artist Name</h3>	-->
+<!--			</div>-->
+<!--			<div class="admy-btn">-->
+<!--				<button class="cmmn-btn top-left-book  slowHover" type="button" data-toggle="modal" data-target="#bookModal"><i class="fa fa-arrow-circle-right" aria-hidden="true"></i>Book</button>-->
+<!--			</div>-->
+<!--			<div class="posts-images artist-img">-->
+<!-- 			<img src="images/artist.jpg">-->
+<!-- 			<p>Alienum phaedrum torquatos nec eu.</p>-->
+<!-- 			    <ul>-->
+<!--	 			   	<li><a href="#"><i class="fa fa-thumbs-up" aria-hidden="true"></i> </a></li>-->
+<!--	 			   	<li><a href="#"><i class="fa fa-star" aria-hidden="true"></i></a></li>-->
+<!--	 			   	<li><a href="#"><i class="fa fa-commenting-o" aria-hidden="true"></i></a></li>-->
+<!--	 			   	<li><a href="#"><i class="fa fa-share-square-o" aria-hidden="true"></i></a></li>-->
+<!-- 			    </ul>-->
+<!-- 		</div>-->
+<!-- 	</div>	-->
+<!--</div>-->
+<!--<div class="col-lg-3 col-md-4 col-sm-12 col-xs-12 artist-title-col">-->
+<!--	<div class="artist-box-wrap-in">-->
+<!--		<div class="white-heading">-->
+<!--				<h3>Artist Name</h3>	-->
+<!--			</div>-->
+<!--			<div class="admy-btn">-->
+<!--				<button class="cmmn-btn top-left-book  slowHover" type="button" data-toggle="modal" data-target="#bookModal"><i class="fa fa-arrow-circle-right" aria-hidden="true"></i>Book</button>-->
+<!--			</div>-->
+<!--			<div class="posts-images artist-img">-->
+<!-- 			<img src="images/artist.jpg">-->
+<!-- 			<p>Alienum phaedrum torquatos nec eu.</p>-->
+<!-- 			    <ul>-->
+<!--	 			   	<li><a href="#"><i class="fa fa-thumbs-up" aria-hidden="true"></i> </a></li>-->
+<!--	 			   	<li><a href="#"><i class="fa fa-star" aria-hidden="true"></i></a></li>-->
+<!--	 			   	<li><a href="#"><i class="fa fa-commenting-o" aria-hidden="true"></i></a></li>-->
+<!--	 			   	<li><a href="#"><i class="fa fa-share-square-o" aria-hidden="true"></i></a></li>-->
+<!-- 			    </ul>-->
+<!-- 		</div>-->
+<!-- 	</div>	-->
+<!--</div> -->
+</div>
+</div>
+</div>
+</div><!--webpage-->
+<!--scroll-to-top-->
+<a id="scrollToTop" class="scroll-hide" href=""><i class="fas fa-chevron-up"></i></a>
+<!--scroll-to-top-->
+</div><!--website-wrap-->
+</div><!--website-wrap-overlay-->
+</div>
+{% endblock webpage %}
+
+{% block JS %}
+<script src="js/jquery.js" type="text/javascript"></script>
+<script src="js/popper.min.js" type="text/javascript"></script>
+<script src="js/bootstrap.min.js" type="text/javascript"></script>
+<script src="js/datelocal.js"></script>
+<script type="text/javascript" src="js/bootstrap-datetimepicker.js"></script>
+<script src="js/owl.carousel.min.js"></script>
+<script src="js/custom.js" type="text/javascript"></script>
+<script src="assets/js/main.js" type="text/javascript"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
+
+<script type="text/javascript">
+	$(function () {
+		$('.toggle-menu').click(function () {
+			$('.exo-menu').toggleClass('display');
+		});
+	});
+	$(document).ready(function () {
+		$(".toggle-menu").click(function () {
+			$(".mobile-close").show(400);
+		});
+		$(".mobile-close").click(function () {
+			$(".exo-menu").removeClass('display');
+			$(this).hide(400);
+		});
+	});
+</script>
+{% endblock JS %}

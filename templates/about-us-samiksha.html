@@ -1,0 +1,146 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}
+About us | Clap Station
+{% endblock title %}
+
+{% block webpage %}
+<!--webpage-->
+<div class="webpage page-about">
+	<div class="container">
+		<div class="about-heading">
+			<h1><span>ABOUT</span></h1>
+		</div>
+		<div class="about-page-wrap about-desktop">
+			<div class="row">
+				<div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+					<div class="about-image">
+						<img src="{% static 'images/about-1.png' %}">
+					</div>
+				</div>
+				<div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
+					<div class="about-detail">
+						<h1> OUR Mission</h1>
+						<p>"At Clap Station, our mission is to transcend musical boundaries and create a rhythmic
+							resonance that resonates with the soul. We are dedicated to crafting and delivering music
+							that captivates, inspires, and connects people from all walks of life. Through our
+							harmonious melodies, we aim to uplift spirits, foster unity, and leave an indelible mark on
+							the hearts of our audience. With unwavering passion and creativity, we strive to be the
+							catalyst for unforgettable musical experiences that transcend time and leave an enduring
+							legacy."
+						</p>
+					</div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
+					<div class="about-detail">
+						<h1>Vision</h1>
+						<p>"Our vision at Clap Station is to be a driving force in the evolution of music, pushing the
+							boundaries of genres and redefining the auditory landscape. We aspire to be globally
+							recognized for our innovative sound, dynamic performances, and the ability to evoke raw
+							emotions through our music. We envision a world where our melodies serve as a universal
+							language, bringing people together and fostering a sense of community. With a commitment to
+							artistic integrity and a constant pursuit of excellence, Clap Station aims to be a beacon of
+							inspiration for generations to come."
+
+						</p>
+					</div>
+				</div>
+
+			</div>
+			<div class="row">
+				<div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+					<div class="about-image">
+						<img src="{% static 'images/about-1.png' %}">
+					</div>
+				</div>
+
+
+				<div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
+					<div class="about-detail">
+						<h1>Organizer</h1>
+						<p>Lorem ipsum dolor sit amet, te vim dicat nullam putent, exomittantur neglegentur
+							ius. Cetero lucilius explicari in eam.Pro ea graece putent voluptaria, reprehendunt
+						</p>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="about-page-wrap about-mobile">
+			<div class="row">
+				<div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+					<div class="about-image">
+						<img src=" {% static 'images/about-1.png' %}">
+					</div>
+				</div>
+
+			</div>
+			<div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+				<div class="about-image">
+					<img src=" {% static 'images/about-1.png' %}">
+				</div>
+			</div>
+			<div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
+				<div class="about-detail">
+					<h4>Team Member Name</h4>
+					<p>Lorem ipsum dolor sit amet, te vim dicat nullam putent, exomittantur neglegentur
+						ius. Cetero lucilius explicari in eam.Pro ea graece putent voluptaria, reprehendunt
+						necessitatibusnec eu, eripuit lucilius et has. Ignota conclusionemque eos id,sed st
+						et consequat ea, at diceret ceteros pertinax usu.Sit iudico aliquam principesei. Ei i
+						us hinc eirmod atomorum.Et tollit principes mea. Odio convenire his et, has anima
+						senserit conceptam ea. Sed ut inani minim adversarium. Eum et invidunt prodess
+						et voluptatum.
+					</p>
+				</div>
+			</div>
+			<div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+				<div class="about-image">
+					<img src=" {% static 'images/about-1.png' %}">
+				</div>
+			</div>
+			<div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
+				<div class="about-detail">
+					<h4>Team Member Name</h4>
+					<p>Lorem ipsum dolor sit amet, te vim dicat nullam putent, exomittantur neglegentur
+						ius. Cetero lucilius explicari in eam.Pro ea graece putent voluptaria, reprehendunt
+						necessitatibusnec eu, eripuit lucilius et has. Ignota conclusionemque eos id,sed st
+						et consequat ea, at diceret ceteros pertinax usu.Sit iudico aliquam principesei. Ei i
+						us hinc eirmod atomorum.Et tollit principes mea. Odio convenire his et, has anima
+						senserit conceptam ea. Sed ut inani minim adversarium. Eum et invidunt prodess
+						et voluptatum.
+					</p>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+</div><!--webpage-->
+{% endblock webpage %}
+
+{% block JS %}
+<script src="js/jquery.js" type="text/javascript"></script>
+<script src="js/popper.min.js" type="text/javascript"></script>
+<script src="js/bootstrap.min.js" type="text/javascript"></script>
+<script src="js/owl.carousel.min.js"></script>
+<script src="js/custom.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+	$(function () {
+		$('.toggle-menu').click(function () {
+			$('.exo-menu').toggleClass('display');
+		});
+	});
+	$(document).ready(function () {
+		$(".toggle-menu").click(function () {
+			$(".mobile-close").show(400);
+		});
+		$(".mobile-close").click(function () {
+			$(".exo-menu").removeClass('display');
+			$(this).hide(400);
+		});
+	});
+</script>
+{% endblock JS %}

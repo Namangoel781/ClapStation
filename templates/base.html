@@ -1,0 +1,1053 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+	<meta name="description" content="">
+	<meta name="author" content="">
+	<title>{% block title %}
+
+		{% endblock title %}
+	</title>
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Rouge+Script&display=swap" rel="stylesheet">
+
+	<script src="https://kit.fontawesome.com/dfebc2aeb7.js" crossorigin="anonymous"></script>
+	<link rel="shortcut icon" href=" {% static 'images/favicon.png' %}">
+	<link href=" {% static 'css/bootstrap.min.css' %}" rel="stylesheet" type="text/css" />
+	<link href=" {% static 'css/font-awesome.min.css' %}" rel="stylesheet" type="text/css" />
+	<link rel="stylesheet" href=" {% static 'css/owl.carousel.min.css' %}">
+	<link rel="stylesheet" href=" {% static 'css/owl.theme.default.min.css' %}">
+	<link href="{% static 'style.css' %}" rel="stylesheet" type="text/css" />
+	<style>
+		nav {
+			background: #bf9100bf;
+			display: flex;
+			flex-wrap: wrap;
+			align-items: center;
+			justify-content: space-between;
+			height: 70px;
+			padding: 0 100px;
+			box-shadow: 0px 2px 8px 8px rgba(0, 0, 0, 0.2);
+			position: sticky;
+			top: 0;
+			left: 0;
+			z-index: 10;
+
+		}
+
+		nav .logo {
+			color: black;
+			font-size: 20px;
+			font-weight: 500;
+			letter-spacing: -1px;
+			position: relative;
+			right: 83px;
+		}
+
+		nav .nav-items {
+			display: flex;
+			flex: 1;
+			padding: 0 0 0 40px;
+		}
+
+		nav .nav-items li {
+			list-style: none;
+			padding: 0 12px;
+
+		}
+
+		nav .nav-items li a {
+			color: white;
+			font-size: 14px;
+			font-weight: 500;
+			text-decoration: none;
+		}
+
+		nav .nav-items li a:hover {
+			color: #000;
+		}
+
+		nav form {
+			display: flex;
+			height: 40px;
+			background: black;
+			min-width: 18% !important;
+
+		}
+
+		nav form .search-data {
+			width: 100%;
+			height: 100%;
+			padding: 0 10px;
+			font-size: 15px;
+			border: none;
+			font-weight: 500;
+			background: none;
+			background-color: #fff;
+		}
+
+		nav form button {
+			padding: 0 13px;
+			color: black;
+			font-size: 15px;
+			background: #bf9100;
+			border: none;
+			border-radius: 2px;
+			cursor: pointer;
+		}
+
+		nav form button:hover {
+			background: #bf9100;
+		}
+
+		nav .menu-icon,
+		nav .cancel-icon,
+		nav .search-icon {
+			width: 40px;
+			text-align: center;
+			margin: 0 50px;
+			font-size: 18px;
+			color: black;
+			cursor: pointer;
+			display: none;
+		}
+
+		nav .menu-icon span,
+		nav .cancel-icon,
+		nav .search-icon {
+			display: none;
+		}
+
+		@media (max-width: 1245px) {
+			nav {
+				padding: 0 50px;
+			}
+		}
+
+		@media (max-width: 1124px) {
+			.header-user {
+				position: relative;
+				left: -35px;
+			}
+		}
+
+		@media (max-width: 1140px) {
+			nav {
+				padding: 0px;
+			}
+
+			nav .logo {
+				/* flex: 2; */
+				left: 10px;
+				text-align: center;
+			}
+
+			nav .nav-items {
+				position: fixed;
+				z-index: 99;
+				top: 70px;
+				width: 100%;
+				left: -100%;
+				height: 100%;
+				padding: 10px 50px 0 50px;
+				text-align: center;
+				background: #14181f;
+				display: inline-block;
+				transition: left 0.3s ease;
+			}
+
+			nav .nav-items.active {
+				left: 0px;
+			}
+
+			nav .nav-items li {
+				line-height: 40px;
+				margin: 30px 0;
+			}
+
+			nav .nav-items li a {
+				font-size: 20px;
+				color: white;
+			}
+
+			nav form {
+				position: absolute;
+				top: 80px;
+				right: 50px;
+				opacity: 0;
+				pointer-events: none;
+				transition: top 0.3s ease, opacity 0.1s ease;
+			}
+
+			nav form.active {
+				top: 95px;
+				opacity: 1;
+				pointer-events: auto;
+			}
+
+			nav form:before {
+				position: absolute;
+				content: "";
+				top: -13px;
+				right: 0px;
+				width: 0;
+				height: 0;
+				z-index: -1;
+				border: 10px solid transparent;
+				border-bottom-color: #1e232b;
+				margin: -20px 0 0;
+			}
+
+			nav form:after {
+				position: absolute;
+				content: '';
+				height: 60px;
+				padding: 2px;
+				background: #1e232b;
+				border-radius: 2px;
+				min-width: calc(100% + 20px);
+				z-index: -2;
+				left: 50%;
+				top: 50%;
+				transform: translate(-50%, -50%);
+			}
+
+			nav .menu-icon {
+				display: block;
+			}
+
+			nav .search-icon,
+			nav .menu-icon span {
+				display: block;
+			}
+
+			nav .menu-icon span.hide,
+			nav .search-icon.hide {
+				display: none;
+			}
+
+			nav .cancel-icon.show {
+				display: block;
+			}
+		}
+
+		.content {
+			position: absolute;
+			top: 50%;
+			left: 50%;
+			text-align: center;
+			transform: translate(-50%, -50%);
+		}
+
+		.content header {
+			font-size: 30px;
+			font-weight: 700;
+		}
+
+		.content .text {
+			font-size: 30px;
+			font-weight: 700;
+		}
+
+		.space {
+			margin: 10px 0;
+		}
+
+		nav .logo.space {
+			color: #bf9100;
+			padding: 0 5px 0 0;
+		}
+
+		@media (max-width: 980px) {
+
+			nav .menu-icon,
+			nav .cancel-icon,
+			nav .search-icon {
+				margin: 0 20px;
+			}
+
+			nav form {
+				right: 30px;
+			}
+		}
+
+		@media (max-width: 350px) {
+
+			nav .menu-icon,
+			nav .cancel-icon,
+			nav .search-icon {
+				margin: 0 10px;
+				font-size: 16px;
+			}
+		}
+
+
+		/* Common Styles for Pop-ups */
+		.container1 {
+			color: #fff;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+		}
+
+		.upload_btn {
+			background: #fff;
+			border: 0;
+			outline: none;
+			cursor: pointer;
+			font-weight: 700;
+		}
+
+		.pop_up {
+			width: 400px;
+			background: #fff;
+			border-radius: 6px;
+			position: absolute;
+			top: 0;
+			left: 50%;
+			transform: translate(-50%, -50%) scale(0.1);
+			text-align: center;
+			padding: 0 30px 30px;
+			color: #333;
+			visibility: hidden;
+			transition: transform 0.4s, top 0.4s;
+		}
+
+		.open-popup,
+		.open-url, .open-event, .open-profile,
+		.open-comment, .open-rate {
+			visibility: visible;
+			position: relative;
+			top: 50%;
+			transform: translate(-50%, -50%) scale(1);
+		}
+
+		.pop_up button {
+			width: 100%;
+			margin-top: 10px;
+			padding: 10px 0;
+			background: #bf9100;
+			color: #fff;
+			border: 0;
+			outline: none;
+			border-radius: 4px;
+			box-shadow: 0 5px 5px rgba(0, 0, 0, 0.2);
+		}
+
+		/* Cross Button Styles */
+		.btn-close {
+			background-color: transparent;
+			font-size: 4rem;
+			border: 0;
+			font-weight: bold;
+			position: absolute;
+			top: 0;
+			right: 7px;
+			border-radius: 50%;
+			transition: all 0.2s ease-in;
+		}
+
+		.btn-close:hover {
+			opacity: 0.7;
+			color: red;
+			cursor: pointer;
+		}
+
+		/* Additional Styles (commented out) */
+		/*
+#overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    z-index: 999;
+    display: none;
+}
+
+.modal-content {
+    display: flex;
+    flex-direction: column;
+    padding: 15px;
+    justify-content: center;
+    text-align: center;
+    align-items: center;
+    border-radius: 10px;
+    text-decoration: none;
+    width: 50%;
+    left: 25%;
+}
+
+.modal-content input {
+    border: 2px solid #bf9100;
+    border-radius: 7px;
+    margin-bottom: 5px;
+    padding: 5px 2px;
+}
+
+.modal-content textarea {
+    border: 2px solid #bf9100;
+    border-radius: 7px;
+    margin-bottom: 5px;
+}
+*/
+
+
+		/* FOOTER */
+
+		.footer-distributed {
+			background: #bf9100;
+			opacity: 0.8;
+			margin-top: 4rem;
+			box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.12);
+			box-sizing: border-box;
+			width: 100%;
+			text-align: left;
+			font: bold 16px sans-serif;
+			padding: 55px 50px;
+		}
+
+		.footer-distributed .footer-left,
+		.footer-distributed .footer-center,
+		.footer-distributed .footer-right {
+			display: inline-block;
+			vertical-align: top;
+		}
+
+		/* Footer left */
+
+		.footer-distributed .footer-left {
+			width: 40%;
+		}
+
+		/* The company logo */
+
+		.footer-distributed h3 {
+			color: #ffffff;
+			font: normal 36px 'Open Sans', cursive;
+			margin: 0;
+		}
+
+		.footer-distributed h3 span {
+			color: lightseagreen;
+		}
+
+		/* Footer links */
+
+		.footer-distributed .footer-links {
+			color: #ffffff;
+			margin: 20px 0 12px;
+			padding: 0;
+		}
+
+		.footer-distributed .footer-links a {
+			display: inline-block;
+			line-height: 1.8;
+			font-weight: 400;
+			text-decoration: none;
+			color: inherit;
+		}
+
+		.footer-distributed .footer-company-name {
+			color: #222;
+			font-size: 14px;
+			font-weight: normal;
+			margin: 0;
+		}
+
+		/* Footer Center */
+
+		.footer-distributed .footer-center {
+			width: 28%;
+		}
+
+		.footer-distributed .footer-center i {
+			background-color: orangered;
+			color: #ffffff;
+			font-size: 25px;
+			width: 38px;
+			height: 38px;
+			border-radius: 50%;
+			text-align: center;
+			line-height: 42px;
+			margin: 10px 15px;
+			vertical-align: middle;
+		}
+
+		.footer-distributed .footer-center i.fa-envelope {
+			font-size: 17px;
+			line-height: 38px;
+		}
+
+		.footer-distributed .footer-center p {
+			display: inline-block;
+			color: #ffffff;
+			font-weight: 400;
+			vertical-align: middle;
+			margin: 0;
+		}
+
+		.footer-distributed .footer-center p span {
+			display: block;
+			font-weight: normal;
+			font-size: 14px;
+			line-height: 2;
+		}
+
+		.footer-distributed .footer-center p a {
+			color: white;
+			text-decoration: none;
+			;
+		}
+
+		.footer-distributed .footer-links a:before {
+			content: "|";
+			font-weight: 300;
+			font-size: 20px;
+			left: 0;
+			color: orangered;
+			display: inline-block;
+			padding-right: 5px;
+		}
+
+		.footer-distributed .footer-links .link-1:before {
+			content: none;
+		}
+
+		/* Footer Right */
+
+		.footer-distributed .footer-right {
+			width: 30%;
+		}
+
+		.footer-distributed .footer-company-about {
+			line-height: 20px;
+			color: #92999f;
+			font-size: 13px;
+			font-weight: normal;
+			margin: 0;
+		}
+
+		.footer-distributed .footer-company-about span {
+			display: block;
+			color: #ffffff;
+			font-size: 14px;
+			font-weight: bold;
+			margin-bottom: 20px;
+		}
+
+		.footer-distributed .footer-icons {
+			margin-top: 25px;
+		}
+
+		.footer-distributed .footer-icons a {
+			display: inline-block;
+			width: 35px;
+			height: 35px;
+			cursor: pointer;
+			background-color: orangered;
+			border-radius: 2px;
+
+			font-size: 20px;
+			color: #ffffff;
+			text-align: center;
+			line-height: 35px;
+			margin-right: 3px;
+			margin-bottom: 5px;
+		}
+
+		/* If you don't want the footer to be responsive, remove these media queries */
+		@media (max-width: 872px) {
+			.call {
+				position: relative;
+				right: 22px;
+			}
+		}
+
+		@media (max-width: 880px) {
+
+			.footer-distributed {
+				font: bold 14px sans-serif;
+			}
+
+			.footer-distributed .footer-left,
+			.footer-distributed .footer-center,
+			.footer-distributed .footer-right {
+				display: block;
+				width: 100%;
+				margin-bottom: 40px;
+				text-align: center;
+			}
+
+			.footer-distributed .footer-center i {
+				margin-left: 0;
+			}
+
+		}
+
+		footer .form {
+			display: flex;
+			align-items: center;
+			padding: 1rem 0;
+		}
+
+		footer .form input {
+			background-color: white;
+			color: #14181f;
+			border: 0;
+			outline: none;
+			padding: 10px 16px;
+			border-radius: 6px;
+			border-top-right-radius: 0;
+			border-bottom-right-radius: 0;
+		}
+
+		footer .form button {
+			padding: 10px 26px;
+			border: 0;
+			border-radius: 6px;
+			border-top-left-radius: 0;
+			border-bottom-left-radius: 0;
+			background-color: orangered;
+			color: white;
+		}
+
+		footer .form button:hover {
+			background-color: white;
+			color: orangered;
+		}
+
+		.live-url-box {
+			border-top: 5px solid #000;
+			border-bottom: 5px solid #000;
+		}
+
+		.white-heading {
+			background-color: #bf9100;
+			text-align: center;
+			padding: 10px 0;
+			border-top: 5px solid #000;
+			border-bottom: 5px solid #000;
+		}
+
+		.white-heading h3 {
+			font-size: 18px;
+			font-weight: 700;
+			color: white;
+		}
+
+			{% block css-code %}
+
+			{% endblock css-code %}
+	</style>
+
+</head>
+
+<body>
+
+	<!--website-wrap-->
+	<div class="website-wrap home-page">
+		<div class="page-back">
+			<!--page-black-overlay-->
+			<div class="page-black-overlay">
+				<div class="page-wrap">
+					<nav>
+						<div class="menu-icon">
+							<span class="fas fa-bars"></span>
+						</div>
+						<div class="logo">
+							<a href="{% url 'starting-page' %}"><img src=" {% static 'images/logo.png' %}"></a>
+						</div>
+						<div class="nav-items">
+							<li><a class="active" href="{% url 'starting-page' %}">Home</a></li>
+							<li><a href="{% url 'groups' %}">Groups</a></li>
+							<li><a href="{% url 'bands' %}">Bands</a></li>
+							<li><a href="{% url 'academies' %}">Academies</a></li>
+							<li><a href="{% url 'events' %}">Events</a></li>
+							<li><a href="{% url 'artists' %}">Artists</a></li>
+							<li><a href="{% url 'about' %}">About</a></li>
+							<li><a href="{% url 'contact' %}">Contact</a></li>
+						</div>
+						<div class="search-icon">
+							<span class="fas fa-search" style="font-size: 20px; position: relative; top: 4px;"></span>
+						</div>
+						<div class="cancel-icon">
+							<span class="fas fa-times"></span>
+						</div>
+						<form action="#">
+							<input type="search" class="search-data" placeholder="Search" required>
+							<button type="submit" class="fas fa-search"></button>
+						</form>
+						<div class="header-user header-notify">
+							<a href="#"><i class="fa fa-bell-o" aria-hidden="true" style="color: black;"></i></a>
+						</div>
+						<div class="header-user header-profile">
+							<a href="#"><i class="fa fa-user" aria-hidden="true" style="color:black;"></i></a>
+							<div class="header-profile-dropdown slowHover">
+								<ul>
+									{% if request.user.is_authenticated%}
+									<li id="profile"><a href="{% url  'profile' %}" class="slowHover"><i
+												class="fa fa-user" aria-hidden="true"></i> Profile</a></li>
+									<li id="logout"><a href="{% url 'logout' %}" class="slowHover"><i
+												class="fa fa-sign-out" aria-hidden="true"></i> Logout</a></li>
+
+									{% else %}
+
+									<li id="signup"><a href="{% url 'signup' %}" class="slowHover"><i
+												class="fa fa-user" aria-hidden="true"></i> SignUp</a></li>
+									<li id="signin"><a href="{% url 'login' %}" class="slowHover"><i class="fa fa-user"
+												aria-hidden="true"></i> SignIn</a></li>
+									{% endif %}
+								</ul>
+							</div>
+						</div>
+					</nav>
+					{% comment %} <header class="header">
+						<div class="logo-navigation">
+							<div class="container-fluid">
+								<div class="row">
+									<div class="col-lg-2 col-md-3 col-sm-3 col-xs-2 logo-col">
+										<div class="logo">
+											<a href="index.html"><img src=" {% static 'images/logo.png' %}"></a>
+										</div>
+									</div>
+									<div class="col-lg-8 col-md-8 col-sm-8 col-xs-8 mobile-search-col">
+										<div class="search-form-header">
+											<form action="" class="search-form">
+												<input type="text" placeholder="Search..." name="search"
+													class="search-input slowHover">
+												<button type="submit" class="search-btn"></button>
+											</form>
+										</div>
+									</div>
+									<div class="col-lg-2 col-md-3 col-sm-3 col-xs-2 mobile-messanger-col">
+										<div class="messanger">
+											<a href="#"><img src=" {% static 'images/messenger.png' %}" width="32"></a>
+										</div>
+									</div>
+									<div class="col-lg-7 col-md-9 col-sm-9 col-xs-6 col-mobile-hidden">
+										<div class="navigation">
+											<nav>
+												<ul class="exo-menu">
+													<li><a class="active" href="{% url " starting-page" %}">Home</a>
+													</li>
+													<li><a href="{% url " groups" %}">Groups</a></li>
+													<li><a href="{% url " bands" %}">Bands</a></li>
+													<li><a href="{% url " academies" %}">Academies</a></li>
+													<li><a href="{% url " events" %}">Events</a></li>
+													<li><a href="{% url " artists" %}">Artists</a></li>
+													<li><a href="{% url " about" %}">About us</a></li>
+													<li><a href="{% url " contact" %}">Contact us</a></li>
+												</ul>
+
+											</nav>
+										</div>
+									</div>
+									<div class="col-lg-3 col-md-2 col-sm-2 col-xs-12">
+										<div class="search-user">
+											<div class="search-form-header">
+												<form action="" class="search-form">
+													<input type="text" placeholder="Search..." name="search"
+														class="search-input slowHover">
+													<button type="submit" class="search-btn"></button>
+												</form>
+											</div>
+											<div class="header-user mobile-list-header text-center">
+												<ul>
+													<li>
+														<a href="javascript:void(0)"
+															class="toggle-menu visible-xs-block"><i class="fa fa-bars"
+																aria-hidden="true"></i>
+															<span>Menu</span></a>
+													</li>
+													<li>
+														<a href="index.html">
+															<img src=" {% static 'images/mobile-home.png' %}">
+															<span>Home</span>
+														</a>
+													</li>
+													<li>
+														<a href="#">
+															<img src=" {% static 'images/mobile-book.png' %}">
+															<span>Book</span>
+														</a>
+													</li>
+													<li>
+														<a href="#">
+															<img src=" {% static 'images/mobile-friends.png' %}">
+															<span>Friends</span>
+														</a>
+													</li>
+													<li>
+														<a href="#">
+															<img src=" {% static 'images/mobile-video.png' %}">
+															<span>Video</span>
+														</a>
+													</li>
+													<li>
+														<a href="#">
+															<img src=" {% static 'images/mobile-bell.png' %}">
+															<span>Notify</span>
+														</a>
+													</li>
+													<li>
+														<a href="profile.html">
+															<img src=" {% static 'images/mobile-profile.png' %}">
+															<span>Profile</span>
+														</a>
+													</li>
+												</ul>
+											</div>
+											<div class="header-user header-notify">
+												<a href="#"><i class="fa fa-bell-o" aria-hidden="true"></i></a>
+											</div>
+											<div class="header-user header-profile">
+												<a href="#"><i class="fa fa-user" aria-hidden="true"></i></a>
+												<div class="header-profile-dropdown slowHover">
+													<ul>
+														<li id="signup"><a href="{% url 'signup' %}"
+																class="slowHover"><i class="fa fa-user"
+																	aria-hidden="true"></i> SignUp</a></li>
+														<li id="signin"><a href=" {% url " login" %}"
+																class="slowHover"><i class="fa fa-user"
+																	aria-hidden="true"></i> SignIn</a></li>
+														<li id="profile"><a href="{% url " profile" %}"
+																class="slowHover"><i class="fa fa-user"
+																	aria-hidden="true"></i> Profile</a></li>
+														<li id="logout"><a href="javascript:void(0)"
+																class="slowHover"><i class="fa fa-sign-out"
+																	aria-hidden="true"></i> Logout</a></li>
+													</ul>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="navigation-mobile">
+								<nav>
+									<ul class="exo-menu">
+										<li><a class="active" href="index.html">Home</a></li>
+										<li><a href="groups.html">Groups</a></li>
+										<li><a href="bands.html">Bands</a></li>
+										<li><a href="academies.html">Academies</a></li>
+										<li><a href="events.html">Events</a></li>
+										<li><a href="artists.html">Artists</a></li>
+										<li><a href="about-us.html">About us</a></li>
+										<li><a href="contact-us.html">Contact us</a></li>
+										<li><a href="javascript:void(0)">Logout</a></li>
+									</ul>
+									<span class="mobile-close"><i class="fa fa-times" aria-hidden="true"></i></span>
+								</nav>
+							</div>
+
+						</div><!--logo-navigation-->
+					</header><!--header--> {% endcomment %}
+
+					{% block webpage %}
+
+
+					{% endblock webpage %}
+
+					<footer class="footer-distributed">
+
+						<div class="footer-left">
+
+							<div>
+								<img src="/static/images/logo.png" alt="" class="logo"
+									style="width: 8rem; margin:0 auto;">
+							</div>
+
+							<p class="footer-links">
+								<a class="active" href="{% url 'starting-page' %}">Home</a>
+								<a href="{% url 'groups' %}">Groups</a>
+								<a href="{% url 'bands' %}">Bands</a>
+								<a href="{% url 'academies' %}">Academies</a>
+								<a href="{% url 'events' %}">Events</a>
+								<a href="{% url 'artists' %}">Artists</a>
+								<a href="{% url 'about' %}">About</a>
+							</p>
+
+
+							<p class="copyright" style="font-weight: 200;">Copyright &copy;
+								<script>document.write(new Date().getFullYear())</script> All Rights Reserved
+							</p>
+
+						</div>
+
+						<div class="footer-center">
+
+							<div>
+								<i class="fa fa-map-marker"></i>
+								<p><span>444 S. Cedros Ave</span> Solana Beach, California</p>
+							</div>
+
+							<div class="call">
+								<i class="fa fa-phone"></i>
+								<p>+1.555.555.5555</p>
+							</div>
+
+							<div>
+								<i class="fa fa-envelope"></i>
+								<p><a href="mailto:support@company.com">support@company.com</a></p>
+							</div>
+
+						</div>
+
+						<div class="footer-right">
+
+							<p class="footer-company-about">
+							<p style="font-size:large; font-weight:bold; color:white;">
+								"Music is the universal language of the mankind."
+							</p>
+							<div class="form">
+								<form action="">
+									<input type="text" placeholder="Email us here...">
+									<button><i class="fa fa-paper-plane"></i></button>
+								</form>
+							</div>
+							</p>
+
+							<div class="footer-icons">
+
+								<a href="#"><i class="fa fa-facebook"></i></a>
+								<a href="#"><i class="fa fa-twitter"></i></a>
+								<a href="#"><i class="fa fa-linkedin"></i></a>
+								<a href="#"><i class="fa fa-github"></i></a>
+
+							</div>
+
+						</div>
+
+					</footer>
+					<!-- <footer>
+	
+			<div class="row">
+			  <div class="col" id="company" style="display: flex;
+			  flex-direction: column;
+			  justify-content: center;
+			  text-align: center;">
+			  <div>
+				<img src="/static/images/logo.png" alt="" class="logo" style="width: 8rem; text-align:center; margin:15px 0;">
+			</div>
+				<p style="font-size:large; font-weight:bold; color:white;">
+					"Music is the universal language of the mankind." <br> - Henry Wadsworth Longfellow
+				</p>
+
+				
+				
+				  
+
+				<div class="social">
+				  <a href="#"><i class="fab fa-facebook"></i></a>
+				  <a href="#"><i class="fab fa-instagram"></i></a>
+				  <a href="#"><i class="fab fa-youtube"></i></a>
+				  <a href="#"><i class="fab fa-twitter"></i></a>
+				  <a href="#"><i class="fab fa-linkedin"></i></a>
+				</div>
+			  </div>
+  
+  
+			  <div class="col" id="services">
+				<h2>Services</h2>
+				<div class="links">
+				  <a href="#">Illustration</a>
+				  <a href="#">Creatives</a>
+				  <a href="#">Poster Design</a>
+				  <a href="#">Card Design</a>
+				</div>
+			  </div>
+  
+			  <div class="col" id="useful-links">
+				<h2>Links</h2>
+				<div class="links">
+				  <a href="#">About</a>
+				  <a href="#">Services</a>
+				  <a href="#">Our Policy</a>
+				  <a href="#">Help</a>
+				</div>
+			  </div>
+  
+			  <div class="col" id="contact">
+				<h2>Contact</h2>
+				 <div class="contact-details">
+				  <i class="fa fa-location"></i>
+				  <p>Plot No. 4, Sector - 16A, Institutional Area, Noida UP- 201301</p>
+				</div> 
+				<div class="form">
+					<form action="">
+					  <input type="text" placeholder="Email us here...">
+					  <button><i class="fa fa-paper-plane"></i></button>
+					</form>
+				  </div>
+				<div class="contact-details">
+				  <p><i class="fa fa-phone"></i> +91-9953045521 <br>
+				  <i class="fa fa-phone"></i>+91-9267952538</p>
+				</div>
+			  </div>
+			</div>
+  
+
+  
+	  </div>
+	  <div class="row">
+		<p class="copyright">Copyright &copy;
+			<script>document.write(new Date().getFullYear())</script>All Rights Reserved
+		</p>
+	</div>
+	</footer> -->
+
+
+					<!--scroll-to-top-->
+					<!-- <a id="scrollToTop" class="scroll-hide" href=""><i class="fas fa-chevron-up"></i></a>  -->
+					<!--scroll-to-top-->
+				</div><!--website-wrap-->
+			</div><!--website-wrap-overlay-->
+		</div>
+	</div>
+
+
+
+	{% block JS %}
+
+
+	{% endblock JS %}
+
+	<script>
+		const menuBtn = document.querySelector(".menu-icon span");
+		const searchBtn = document.querySelector(".search-icon");
+		const cancelBtn = document.querySelector(".cancel-icon");
+		const items = document.querySelector(".nav-items");
+		const form = document.querySelector("form");
+		menuBtn.onclick = () => {
+			items.classList.add("active");
+			menuBtn.classList.add("hide");
+			searchBtn.classList.add("hide");
+			cancelBtn.classList.add("show");
+		}
+		cancelBtn.onclick = () => {
+			items.classList.remove("active");
+			menuBtn.classList.remove("hide");
+			searchBtn.classList.remove("hide");
+			cancelBtn.classList.remove("show");
+			form.classList.remove("active");
+			cancelBtn.style.color = "#ff3d00";
+		}
+		searchBtn.onclick = () => {
+			form.classList.add("active");
+			searchBtn.classList.add("hide");
+			cancelBtn.classList.add("show");
+		}
+
+
+	</script>
+
+</body>
+
+</html>
